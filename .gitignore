@@ -1,8 +1,10 @@
 *.log
 *.pyc
+**/CACHE
 __pycache__/
 db-volumes/
 .idea/
 assets/vendor/
+media/
 
 db.sqlite3

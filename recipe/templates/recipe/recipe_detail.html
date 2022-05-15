@@ -9,7 +9,11 @@
             <h1>{{ recipe.title }}</h1>
         </div>
         <div class="col-lg-7">
-            <img src="{% static 'images/01.jpg' %}" width="640" class="img-fluid rounded border">
+            {% if recipe.image %}
+                <img src="{{ recipe.detail_main.url }}" width="640" class="img-fluid rounded border">
+            {% else %}
+                <img src="{% static 'images/01.jpg' %}" width="640" class="img-fluid rounded border">
+            {% endif %}
         </div>
         <div class="col-lg-5">
             <h3>作り方</h3>
