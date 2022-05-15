@@ -2,5 +2,7 @@
 *.pyc
 __pycache__/
 db-volumes/
+.idea/
+assets/vendor/
+
 db.sqlite3
-.idea
