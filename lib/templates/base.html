@@ -52,6 +52,19 @@
 
   <!-- Page Content -->
   <div class="container">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div{% if message.tags %} class="my-3 alert alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show"{% endif %} role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     {% block body %} {% endblock %}
   </div>
   <!-- /.container -->
