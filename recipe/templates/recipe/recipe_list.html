@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Recipe</title>
-</head>
-<body>
-    <h1>Recipe List</h1>
+{% extends "base.html" %}
 
-    {% for recipe in recipe_list %}
-        {{ recipe }}
-    {% endfor %}
+{% block body %}
 
-</body>
-</html>
+    <h1>recipe_list.html</h1>
+
+{% endblock %}
