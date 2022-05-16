@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+
+from comment.forms import CommentForm
 from .models import Recipe
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
@@ -40,6 +42,13 @@ class RecipeDetailView(DetailView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, "削除しました")
         return super().delete(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context: dict = super().get_context_data(**kwargs)
+        
+        context['CommentForm'] = CommentForm(initial={'recipe': self.object})
+        
+        return context
     
     
 class RecipeUpdateView(UpdateView):
