@@ -8,6 +8,7 @@ from django.contrib import messages
 class RecipeListView(ListView):
     model = Recipe
     
+    # 検索のクエリパラム取得
     def get_queryset(self):
         qs = Recipe.objects.all()
         keyword = self.request.GET.get("q")
