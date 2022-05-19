@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # Application
     'recipe',
     'comment',
+    'adminpage',
     
     # Library
     'crispy_forms',
