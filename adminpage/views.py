@@ -2,11 +2,17 @@ from django.views.generic import TemplateView, CreateView, DeleteView, UpdateVie
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from recipe.forms import RecipeForm
 from recipe.models import Recipe
 
 
-class AdminpageTemplateView(TemplateView):
+class AdminpageMixin(LoginRequiredMixin):
+    login_url = reverse_lazy("login")
+    
+
+class AdminpageTemplateView(AdminpageMixin, TemplateView):
     template_name = "adminpage/index.html"
     
     def get_context_data(self, **kwargs):
@@ -20,7 +26,7 @@ class AdminpageTemplateView(TemplateView):
         return context
 
 
-class RecipeCreateView(CreateView):
+class RecipeCreateView(AdminpageMixin, CreateView):
     model = Recipe
     form_class = RecipeForm
     success_url = reverse_lazy("recipe:index")
@@ -45,7 +51,7 @@ class RecipeCreateView(CreateView):
             return self.form_invalid(form)
 
 
-class RecipeUpdateView(UpdateView):
+class RecipeUpdateView(AdminpageMixin, UpdateView):
     model = Recipe
     fields = ["title", "content", "description", "image"]
 
@@ -62,7 +68,7 @@ class RecipeUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class RecipeDeleteView(DeleteView):
+class RecipeDeleteView(AdminpageMixin, DeleteView):
     model = Recipe
     success_url = reverse_lazy("recipe:index")
 
